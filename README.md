@@ -6,26 +6,21 @@ A **Promise** is an object that represents the eventual completion (or failure) 
 
 **Example:**
 ```javascript
-const fetchData = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        let success = true;
-        success ? resolve("Data fetched successfully!") : reject("Error fetching data.");
-    }, 2000);
+let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Success!"), 2000);
 });
 
-fetchData
-    .then(data => console.log(data))  // Success
-    .catch(error => console.error(error));  // Failure
+myPromise.then(result => console.log(result))  // Output: "Success!"
+           .catch(error => console.log(error));
 ```
----
 
 ## 2. Callback Function
-A **callback function** is a function that is passed as an argument to another function and is executed after the completion of that function.
+A **callback function** is a function that is passed as an argument to another function and is executed later.
 
 **Example:**
 ```javascript
 function greet(name, callback) {
-    console.log(`Hello, ${name}`);
+    console.log(`Hello ${name}`);
     callback();
 }
 
@@ -33,89 +28,75 @@ function sayGoodbye() {
     console.log("Goodbye!");
 }
 
-greet("John", sayGoodbye);
+greet("Alice", sayGoodbye);  // Output: Hello Alice, Goodbye!
 ```
----
 
 ## 3. Reduce
-The `.reduce()` method applies a function against an accumulator and each element in the array to reduce it to a single value.
+**Reduce** executes a reducer function on each element of the array, returning a single value.
 
 **Example:**
 ```javascript
 const numbers = [1, 2, 3, 4];
-const sum = numbers.reduce((acc, current) => acc + current, 0);
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
 console.log(sum); // Output: 10
 ```
----
 
 ## 4. Map
-The `.map()` method creates a **new array** by applying a given function to every element in the original array.
-
-**Example:**
-```javascript
-const numbers = [1, 2, 3];
-const doubled = numbers.map(num => num * 2);
-console.log(doubled); // Output: [2, 4, 6]
-```
----
-
-## 5. Filter
-The `.filter()` method creates a **new array** with elements that pass a specified condition.
+**Map** creates a new array populated with the results of calling a provided function on every element in the calling array.
 
 **Example:**
 ```javascript
 const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8]
+```
+
+## 5. Filter
+**Filter** creates a new array with all elements that pass the provided condition.
+
+**Example:**
+```javascript
+const numbers = [1, 2, 3, 4, 5];
 const evens = numbers.filter(num => num % 2 === 0);
 console.log(evens); // Output: [2, 4]
 ```
----
 
 ## 6. First Order Function
-A **first-order function** is a function that does not take other functions as arguments or return other functions.
+A **first-order function** is a function that does not take other functions as arguments or return functions.
 
 **Example:**
 ```javascript
 function add(a, b) {
     return a + b;
 }
-console.log(add(2, 3)); // Output: 5
 ```
----
 
 ## 7. Higher Order Function
-A **higher-order function** is a function that takes another function as an argument or returns a function.
+A **higher-order function** is a function that accepts another function as an argument or returns a function.
 
 **Example:**
 ```javascript
-function higherOrder(func) {
-    return func(5);
+function multiplyBy(factor) {
+    return function (num) {
+        return num * factor;
+    };
 }
 
-function square(x) {
-    return x * x;
-}
-
-console.log(higherOrder(square)); // Output: 25
+const triple = multiplyBy(3);
+console.log(triple(5));  // Output: 15
 ```
----
 
 ## 8. Hoisting
-**Hoisting** is JavaScript's behavior of moving variable and function declarations to the top of their scope before code execution.
+**Hoisting** is JavaScript’s behavior where variable and function declarations are moved to the top of their scope before code execution.
 
 **Example:**
 ```javascript
-console.log(a); // Output: undefined
-var a = 5;
-
-greet(); // Function declarations are hoisted
-function greet() {
-    console.log("Hello!");
-}
+console.log(x);  // Output: undefined
+var x = 5;
 ```
----
 
-## 9. Async & Await
-The `async` and `await` keywords are used to write asynchronous code in a cleaner way, improving readability.
+## 9. Async and Await
+The **async/await** syntax allows writing asynchronous code in a cleaner, more readable way.
 
 **Example:**
 ```javascript
@@ -125,63 +106,56 @@ async function fetchData() {
         let data = await response.json();
         console.log(data);
     } catch (error) {
-        console.error('Error:', error);
+        console.error("Error fetching data", error);
     }
 }
 fetchData();
 ```
----
 
 ## 10. Objects
-An **object** is a collection of key-value pairs used to represent real-world entities.
+An **object** is a collection of key-value pairs.
 
 **Example:**
 ```javascript
 const person = {
-    name: "John",
+    name: "Alice",
     age: 30,
-    greet: function() {
-        console.log(`Hello, my name is ${this.name}.`);
+    greet() {
+        console.log(`Hello, my name is ${this.name}`);
     }
 };
-
-person.greet(); // Output: Hello, my name is John.
 ```
----
 
 ## 11. DOM (Document Object Model)
-The **DOM** is a programming interface for web documents. It represents the structure of an HTML document as a tree of objects.
+The **DOM** represents the structure of a web page as a tree of objects.
 
-**Example DOM Manipulation:**
+**Example:**
 ```javascript
-document.getElementById("demo").innerHTML = "Hello, World!";
+document.getElementById("myElement").innerText = "Hello World!";
 ```
----
 
 ## 12. IIFE (Immediately Invoked Function Expression)
-An **IIFE** is a function that is executed immediately after it is defined.
+**IIFE** is a function that runs immediately after its definition.
 
 **Example:**
 ```javascript
-(function() {
-    console.log("This is an IIFE!");
+(function () {
+    console.log("I run immediately!");
 })();
 ```
----
 
 ## 13. Anonymous Function
-An **anonymous function** is a function without a name. These are often used as arguments in higher-order functions.
+An **anonymous function** is a function without a name.
 
 **Example:**
 ```javascript
-setTimeout(function() {
-    console.log("Hello from an anonymous function!");
-}, 1000);
+const greet = function() {
+    console.log("Hello!");
+};
 ```
----
 
 ## 14. Closures
-A **closure** is a function that remembers and has access to variables in its outer scope even after the outer function has finished executing.
+A **closure** is when an inner function remembers variables from its outer function.
 
 **Example:**
 ```javascript
@@ -194,6 +168,54 @@ function outer() {
 }
 
 const counter = outer();
-counter(); // Output: 1
-counter(); // Output: 2
+counter(); // 1
+counter(); // 2
 ```
+
+## 15. Map vs forEach
+- **`map()`** returns a new array.
+- **`forEach()`** performs operations but does not return a new array.
+
+**Example:**
+```javascript
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);  
+numbers.forEach(num => console.log(num * 2));
+```
+
+## 16. Splice
+**Splice** changes the contents of an array by removing or replacing elements.
+
+**Example:**
+```javascript
+let fruits = ["apple", "banana", "cherry"];
+fruits.splice(1, 1); 
+console.log(fruits); // ["apple", "cherry"]
+```
+
+## 17. Slice
+**Slice** returns a new array, extracting elements without modifying the original array.
+
+**Example:**
+```javascript
+const numbers = [1, 2, 3, 4];
+const sliced = numbers.slice(1, 3); 
+console.log(sliced); // [2, 3]
+```
+
+## 18. Undefined
+**`undefined`** is a value assigned to variables that have been declared but not initialized.
+
+**Example:**
+```javascript
+let x;
+console.log(x); // undefined
+```
+
+## 19. Var, Let, and Const
+- **`var`**: Function-scoped
+- **`let`**: Block-scoped
+- **`const`**: Block-scoped, cannot be reassigned
+
+## 20. Virtual DOM
+The **Virtual DOM** is a lightweight JavaScript representation of the actual DOM, used by React to improve performance.
