@@ -149,7 +149,7 @@ An **anonymous function** is a function without a name.
 
 **Example:**
 ```javascript
-const greet = function() {
+function() {
     console.log("Hello!");
 };
 ```
