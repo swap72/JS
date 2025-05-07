@@ -36,6 +36,12 @@ greet("Alice", sayGoodbye);  // Output: Hello Alice, Goodbye!
 
 **Example:**
 ```javascript
+
+array.reduce((accumulator, currentValue) => {
+  // logic
+}, initialValue);
+
+
 const numbers = [1, 2, 3, 4];
 const sum = numbers.reduce((acc, curr) => acc + curr, 0);
 console.log(sum); // Output: 10
